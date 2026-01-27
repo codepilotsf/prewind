@@ -57,30 +57,23 @@
 
   /* Shadow */
   --shadow: 0 4px 4px 1px rgb(0 0 0 / 0.15), 0 2px 4px -2px rgb(0 0 0 / 0.25);
-  --shadow-sm: 0 2px 3px -0.5px rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-sm:
+    0 2px 3px -0.5px rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
   /* Width Constraints */
   --max-w-text: 80ch;
   --max-w-form: 40rem;
 
-  /* Form Fields */
-  --ui-field-padding: 0.8rem;
-  --ui-field-height: 2.5rem;
-  --ui-field-font-size: 0.9rem;
-  --ui-field-border: 1px solid var(--light);
-  --ui-field-border-radius: var(--rounded-sm);
-  --ui-field-focus-outline: 2px solid;
-  --ui-field-focus-color: var(--brand-1);
-  --ui-field-bg: var(--white);
-  --ui-field-bg-disabled: var(--lighter);
-  --ui-field-placeholder-color: var(--midtone);
-  --ui-field-value-color: var(--dark);
-  --ui-field-label-color: var(--midtone);
-  --ui-field-value-color-disabled: var(--light);
-  --ui-field-icon-width: 1rem;
-
-  /* Fluid Text and Space (use [NPX command] to update these values) */
+  /* Fluid Text Scale – Generated with: `npx prewindcss text`
+     Min viewport: 320px
+     Max viewport: 1600px
+     Min base size: 14px
+     Max base size: 18px
+     Min ratio: 1.25 - Major Third
+     Max ratio: 1.414 - Augmented Fourth
+  */
   --text-sm: clamp(0.7rem, 0.6761rem + 0.1195vw, 0.7956rem);
   --text-base: clamp(0.875rem, 0.8125rem + 0.3125vw, 1.125rem);
   --text-lg: clamp(1.094rem, 0.9695rem + 0.6212vw, 1.591rem);
@@ -89,14 +82,22 @@
   --text-3xl: clamp(2.136rem, 1.546rem + 2.951vw, 4.497rem);
   --text-4xl: clamp(2.67rem, 1.748rem + 4.611vw, 6.359rem);
 
-  --space-3xs: clamp(0.2222rem, 0.2171rem + 0.02579vw, 0.2429rem);
-  --space-2xs: clamp(0.3333rem, 0.3155rem + 0.08938vw, 0.4048rem);
-  --space-xs: clamp(0.5rem, 0.4563rem + 0.2186vw, 0.6749rem);
-  --space-sm: clamp(0.75rem, 0.6562rem + 0.4688vw, 1.125rem);
-  --space-md: clamp(1.125rem, 0.9374rem + 0.938vw, 1.875rem);
-  --space-lg: clamp(1.688rem, 1.328rem + 1.798vw, 3.126rem);
-  --space-xl: clamp(2.531rem, 1.861rem + 3.35vw, 5.211rem);
-  --space-2xl: clamp(3.797rem, 2.574rem + 6.113vw, 8.688rem);
-  --space-3xl: clamp(5.695rem, 3.499rem + 10.98vw, 14.48rem);
-  --space-4xl: clamp(8.543rem, 4.643rem + 19.5vw, 24.14rem);
+  /* Fluid Space Scale – Generated with: `npx prewindcss space`
+     Min viewport: 320px
+     Max viewport: 1600px
+     Min sm size: 12px
+     Max sm size: 18px
+     Min ratio: 1.333 - Perfect Fourth
+     Max ratio: 1.667 - Major Sixth
+  */
+  --space-3xs: clamp(0.3166rem, 0.3351rem + -0.09224vw, 0.2429rem);
+  --space-2xs: clamp(0.4221rem, 0.4264rem + -0.02156vw, 0.4048rem);
+  --space-xs: clamp(0.5626rem, 0.5346rem + 0.1403vw, 0.6749rem);
+  --space-sm: clamp(0.75rem, 0.6563rem + 0.4688vw, 1.125rem);
+  --space-md: clamp(0.9997rem, 0.7808rem + 1.095vw, 1.875rem);
+  --space-lg: clamp(1.333rem, 0.8843rem + 2.242vw, 3.126rem);
+  --space-xl: clamp(1.776rem, 0.9177rem + 4.294vw, 5.211rem);
+  --space-2xl: clamp(2.368rem, 0.7881rem + 7.899vw, 8.688rem);
+  --space-3xl: clamp(3.157rem, 0.3252rem + 14.16vw, 14.48rem);
+  --space-4xl: clamp(4.208rem, 0.7758rem - 24.92vw, 24.14rem);
 }

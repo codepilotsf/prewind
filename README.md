@@ -1,7 +1,3 @@
-<!--
-  - [NPX_FLUID_COMMAND] - The npx command to generate fluid font and space sizes
--->
-
 # Prewind
 
 A lightweight CSS utility library with no build step. Prewind provides the most useful utilities for everyday styling while encouraging a simpler, more maintainable approach to CSS. The entire library is ~7KB gzipped. No build step, no purging, no tree-shaking — just one CSS file.
@@ -116,10 +112,17 @@ This gives you responsive typography and spacing without writing media queries, 
 To generate custom fluid sizes for your project:
 
 ```bash
-[NPX_FLUID_COMMAND]
+npx prewindcss text   # Generate fluid typography scale
+npx prewindcss space  # Generate fluid spacing scale
 ```
 
-This generates both the `--text-*` and `--space-*` variables for for you to copy/paste into your theme variables.
+Each command launches an interactive configurator where you can adjust:
+
+- Viewport range (min/max)
+- Base size at each viewport
+- Scale ratio (using musical intervals like Major Third, Perfect Fifth, etc.)
+
+The generated CSS is copied to your clipboard — just paste it into your theme variables.
 
 Note: The t-shirt sizes used for borders (`--border-sm`, `--border-lg`), border radius (`--rounded-sm`, `--rounded-lg`), and shadows (`shadow-sm`, `shadow-lg`, are not fluid — they're fixed values you set manually in your theme variables.
 

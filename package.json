@@ -2,8 +2,13 @@
   "name": "prewindcss",
   "version": "1.0.0",
   "description": "Lightweight, no-build Tailwind alternative",
+  "type": "module",
   "main": "prewind.css",
   "style": "prewind.css",
+  "unpkg": "prewind.css",
+  "bin": {
+    "prewindcss": "./script/prewindcss.js"
+  },
   "keywords": [
     "Tailwind",
     "CSS",
@@ -14,6 +19,9 @@
   ],
   "author": "Codepilot",
   "license": "MIT",
+  "dependencies": {
+    "enquirer": "^2.4.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/codepilotsf/prewind.git"
