@@ -1,8 +1,4 @@
 <!--
-  TODO: Before publishing, replace these placeholders:
-
-  - [CDN_URL] - The actual CDN URL for prewind.css
-  - [GITHUB_THEME_URL] - The URL to the default theme.css in the GitHub repo
   - [NPX_FLUID_COMMAND] - The npx command to generate fluid font and space sizes
 -->
 
@@ -33,14 +29,14 @@ Prewind works with the platform, not around it. CSS already has a cascade, varia
 Load Prewind from a CDN or host it yourself:
 
 ```html
-<link rel="stylesheet" href="[CDN_URL]/prewind.css" />
+<link rel="stylesheet" href="https://unpkg.com/prewindcss@1.0.0" />
 ```
 
 ### 2. Define your theme variables
 
 Prewind's utility classes reference CSS variables for colors, spacing, fonts, and other design tokens. You need to define these variables somewhere in your CSS — either in a separate file, or at the top of your global stylesheet.
 
-You can copy the [default theme]([GITHUB_THEME_URL]) from the repository and customize it, or define the variables yourself:
+You can copy the [default theme](https://github.com/codepilotsf/prewind/blob/main/theme.css) from the repository and customize it, or define the variables yourself:
 
 ```css
 :root {

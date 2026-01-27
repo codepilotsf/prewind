@@ -1,5 +1,5 @@
 {
-  "name": "prewind",
+  "name": "prewindcss",
   "version": "1.0.0",
   "description": "Lightweight, no-build Tailwind alternative",
   "main": "prewind.css",
@@ -14,5 +14,8 @@
   ],
   "author": "Codepilot",
   "license": "MIT",
-  "repository"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codepilotsf/prewind.git"
+  }
 }

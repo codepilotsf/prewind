@@ -1,0 +1,323 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'fileutils'
+require 'yaml'
+
+# Text scale mapping (base = step 0)
+TEXT_SCALE = {
+  'sm' => -1,
+  'base' => 0,
+  'lg' => 1,
+  'xl' => 2,
+  '2xl' => 3,
+  '3xl' => 4,
+  '4xl' => 5
+}.freeze
+
+# Space scale mapping (sm = step 0)
+SPACE_SCALE = {
+  '3xs' => -3,
+  '2xs' => -2,
+  'xs' => -1,
+  'sm' => 0,
+  'md' => 1,
+  'lg' => 2,
+  'xl' => 3,
+  '2xl' => 4,
+  '3xl' => 5,
+  '4xl' => 6
+}.freeze
+
+# Default configuration
+DEFAULT_CONFIG = {
+  'text' => {
+    'min_viewport' => 320,
+    'max_viewport' => 1600,
+    'min_base' => 14,
+    'max_base' => 18,
+    'min_ratio' => 1.25,
+    'max_ratio' => 1.414
+  },
+  'space' => {
+    'min_viewport' => 320,
+    'max_viewport' => 1600,
+    'min_sm' => 12,
+    'max_sm' => 18,
+    'min_ratio' => 1.5,
+    'max_ratio' => 1.667
+  }
+}.freeze
+
+# Find config/fluid.yml relative to project root
+def find_config_path
+  # Start from current directory and go up to find config directory
+  current = Dir.pwd
+
+  loop do
+    config_dir = File.join(current, 'config')
+    if Dir.exist?(config_dir)
+      return File.join(config_dir, 'fluid.yml')
+    end
+
+    parent = File.dirname(current)
+    break if parent == current # Reached root
+    current = parent
+  end
+
+  # Default to config/fluid.yml in current directory
+  File.join(Dir.pwd, 'config', 'fluid.yml')
+end
+
+# Find stylesheets/theme.css anywhere in the project
+def find_theme_css
+  # Start from current directory and search up for project root, then search down
+  current = Dir.pwd
+  root = current
+
+  # Search up to find a likely project root (has config/ or bin/ directory)
+  loop do
+    if Dir.exist?(File.join(current, 'config')) || Dir.exist?(File.join(current, 'bin'))
+      root = current
+      break
+    end
+
+    parent = File.dirname(current)
+    break if parent == current # Reached filesystem root
+    current = parent
+  end
+
+  # Search from root downward
+  Dir.chdir(root) do
+    matches = Dir.glob('**/stylesheets/theme.css')
+
+    if matches.empty?
+      puts "ERROR: Could not find stylesheets/theme.css in the project."
+      puts "Please ensure you have a theme.css file inside a 'stylesheets' directory."
+      exit 1
+    end
+
+    if matches.length > 1
+      puts "ERROR: Found multiple stylesheets/theme.css files:"
+      matches.each { |m| puts "  - #{m}" }
+      puts ""
+      puts "There should only be ONE theme.css file inside a 'stylesheets' directory."
+      puts "Please remove the duplicates and try again."
+      exit 1
+    end
+
+    File.expand_path(matches.first)
+  end
+end
+
+# Generate default config file
+def generate_default_config(config_path)
+  # Ensure config directory exists
+  FileUtils.mkdir_p(File.dirname(config_path))
+
+  # Write default config with comments
+  content = <<~YAML
+    # Prewind System - Fluid Typography & Spacing Configuration
+    #
+    # Edit these values to customize your fluid type and space scales.
+    # After making changes, run: bin/fluid
+    # This will regenerate the text and space CSS variables in stylesheets/theme.css
+    #
+    #
+    # Suggested modular scale ratios:
+    # -------------------------------
+    #   1.067 - Minor Second (subtle)
+    #   1.125 - Major Second
+    #   1.2   - Minor Third
+    #   1.25  - Major Third (balanced)
+    #   1.333 - Perfect Fourth (strong hierarchy)
+    #   1.414 - Augmented Fourth (dramatic)
+    #   1.5   - Perfect Fifth (bold)
+    #   1.618 - Golden Ratio (classic proportions)
+    #   1.667 - Major Sixth
+    #   1.778 - Minor Seventh
+    #   1.875 - Major Seventh
+    #   2.0   - Octave (extreme contrast)
+
+    text:
+      min_viewport: 320      # Minimum viewport width (px)
+      max_viewport: 1600     # Maximum viewport width (px)
+      min_base: 14           # Base font size at min viewport (px)
+      max_base: 18           # Base font size at max viewport (px)
+      min_ratio: 1.25        # Type scale ratio at min viewport
+      max_ratio: 1.414       # Type scale ratio at max viewport
+
+    space:
+      min_viewport: 320      # Minimum viewport width (px)
+      max_viewport: 1600     # Maximum viewport width (px)
+      min_sm: 12             # Small space at min viewport (px)
+      max_sm: 18             # Small space at max viewport (px)
+      min_ratio: 1.5         # Space scale ratio at min viewport
+      max_ratio: 1.667       # Space scale ratio at max viewport
+  YAML
+
+  File.write(config_path, content)
+
+  puts "✓ Generated default configuration: #{config_path}"
+  puts ""
+  puts "Next steps:"
+  puts "  1. Edit #{config_path} with your desired fluid scale settings"
+  puts "  2. Run 'bin/fluid' again to generate the CSS variables"
+  puts ""
+
+  exit 0
+end
+
+# Load configuration from YAML
+def load_config(config_path)
+  begin
+    config = YAML.load_file(config_path)
+  rescue Psych::SyntaxError => e
+    puts "ERROR: Invalid YAML in #{config_path}: #{e.message}"
+    exit 1
+  end
+
+  # Convert string keys to symbols and normalize hyphens to underscores
+  normalized = {}
+  ['text', 'space'].each do |scale|
+    unless config[scale]
+      puts "ERROR: Missing '#{scale}' configuration in #{config_path}"
+      exit 1
+    end
+
+    normalized[scale.to_sym] = {}
+    config[scale].each do |key, value|
+      normalized[scale.to_sym][key.to_s.gsub('-', '_').to_sym] = value.to_f
+    end
+  end
+
+  normalized
+end
+
+# Calculate a clamp() value for a given step in the modular scale
+def calculate_clamp(config, step)
+  min_vw = config[:min_viewport]
+  max_vw = config[:max_viewport]
+  # Support both min_base/max_base (for text) and min_sm/max_sm (for space)
+  min_base = config[:min_base] || config[:min_sm]
+  max_base = config[:max_base] || config[:max_sm]
+  min_ratio = config[:min_ratio]
+  max_ratio = config[:max_ratio]
+
+  # Calculate size at min and max viewports using modular scale
+  min_size = min_base * (min_ratio ** step)
+  max_size = max_base * (max_ratio ** step)
+
+  # Convert to rem (assuming 16px = 1rem)
+  min_rem = min_size / 16.0
+  max_rem = max_size / 16.0
+
+  # Calculate the slope and intercept for the preferred value
+  # We want: value = slope * 100vw + intercept
+  # At min_vw: min_rem = slope * min_vw + intercept
+  # At max_vw: max_rem = slope * max_vw + intercept
+  # Therefore: slope = (max_rem - min_rem) / (max_vw - min_vw)
+  # And: intercept = min_rem - slope * min_vw
+
+  # In CSS: value = A rem + B vw
+  # The browser evaluates B vw as: B * (viewport_width / 100) px
+  # Which in rem is: B * (viewport_width / 100 / 16) rem
+  #
+  # So we need:
+  # At min_vw: min_rem = A + B * (min_vw / 100 / 16)
+  # At max_vw: max_rem = A + B * (max_vw / 100 / 16)
+
+  # Convert viewport widths to their vw-in-rem equivalents
+  min_vw_in_rem = min_vw / 100.0 / 16.0
+  max_vw_in_rem = max_vw / 100.0 / 16.0
+
+  # Solve for B (the vw coefficient)
+  vw_coefficient = (max_rem - min_rem) / (max_vw_in_rem - min_vw_in_rem)
+
+  # Solve for A (the intercept)
+  intercept = min_rem - (vw_coefficient * min_vw_in_rem)
+
+  # Format the clamp function
+  # Round to 4 decimal places for readability
+  min_str = format('%.4grem', min_rem)
+  max_str = format('%.4grem', max_rem)
+
+  if intercept >= 0
+    preferred_str = format('%.4grem + %.4gvw', intercept, vw_coefficient)
+  else
+    preferred_str = format('%.4grem - %.4gvw', intercept.abs, vw_coefficient.abs)
+  end
+
+  "clamp(#{min_str}, #{preferred_str}, #{max_str})"
+end
+
+# Update or add a CSS variable in theme.css
+def update_css_variable(content, var_name, value)
+  # Try to replace existing variable
+  pattern = /^(\s*)(#{Regexp.escape(var_name)}):\s*[^;]+;/m
+
+  if content.match?(pattern)
+    # Update existing variable
+    content.gsub(pattern, "\\1#{var_name}: #{value};")
+  else
+    # Variable doesn't exist, add it before closing brace with proper indentation
+    content.sub(/\n(\s*)\}(\s*)$/, "\n\\1#{var_name}: #{value};\n\\1}\\2")
+  end
+end
+
+# Main execution
+def main
+  # Find config path
+  config_path = find_config_path
+
+  # If config doesn't exist, generate it and exit
+  unless File.exist?(config_path)
+    generate_default_config(config_path)
+  end
+
+  # Find theme.css
+  theme_path = find_theme_css
+
+  # Load configuration
+  config = load_config(config_path)
+
+  # Show what will be updated and ask for confirmation
+  puts "This will overwrite --text-<size> and --space-<size> CSS variables in theme.css."
+  puts ""
+  print "Proceed? (y/N): "
+
+  response = gets.chomp.downcase
+  unless response == 'y' || response == 'yes'
+    puts ""
+    puts "Cancelled."
+    exit 0
+  end
+
+  puts ""
+
+  # Read existing theme.css
+  theme_content = File.read(theme_path)
+
+  # Update each text scale variable
+  TEXT_SCALE.each do |size, step|
+    var_name = "--text-#{size}"
+    clamp_value = calculate_clamp(config[:text], step)
+    theme_content = update_css_variable(theme_content, var_name, clamp_value)
+  end
+
+  # Update each space scale variable
+  SPACE_SCALE.each do |size, step|
+    var_name = "--space-#{size}"
+    clamp_value = calculate_clamp(config[:space], step)
+    theme_content = update_css_variable(theme_content, var_name, clamp_value)
+  end
+
+  # Write back to theme.css
+  File.write(theme_path, theme_content)
+
+  puts "Configuration loaded from: #{config_path}"
+  puts "✓ Updated fluid CSS variables in #{theme_path}"
+  puts ""
+end
+
+main
