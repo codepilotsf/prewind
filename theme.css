@@ -1,0 +1,102 @@
+/*
+  ----------------------------------------
+  Theme - Utility classes
+  ----------------------------------------
+*/
+
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap");
+
+:root {
+  /* Fonts */
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-heading: "Inter", system-ui, sans-serif;
+  --font-normal: 400;
+  --font-bold: 700;
+
+  /* Brand Colors */
+  --brand-1: #0284c7; /* Sky blue */
+  --brand-1-light: #e0f2fe;
+  --brand-2: #0c4a6e; /* Blue */
+  --brand-2-light: #bae6fd;
+  --brand-3: #0f766e; /* Teal */
+  --brand-3-light: #99f6e4;
+  --brand-4: #a21caf; /* Fuchsia */
+  --brand-4-light: #f5d0fe;
+
+  /* Neutral Colors */
+  --black: #09090b;
+  --darker: #27272a;
+  --dark: #3f3f46;
+  --midtone: #71717a;
+  --light: #d4d4d8;
+  --lighter: #f4f4f5;
+  --white: #ffffff;
+
+  /* Semantic Colors */
+  --success: #16a34a; /* Green */
+  --success-light: #dcfce7;
+  --info: #2563eb; /* Blue */
+  --info-light: #dbeafe;
+  --warning: #ea580c; /* Orange */
+  --warning-light: #ffedd5;
+  --error: #b91c1c; /* Red */
+  --error-light: #fee2e2;
+  --link: #2563eb; /* Blue */
+  --highlight: #fef08a; /* Yellow */
+
+  /* Border & Outline Widths */
+  --border: 1px;
+  --border-sm: 0.5px;
+  --border-lg: 2px;
+
+  /* Border Radius */
+  --rounded: 0.25rem;
+  --rounded-sm: 0.125rem;
+  --rounded-lg: 0.5rem;
+
+  /* Shadow */
+  --shadow: 0 4px 4px 1px rgb(0 0 0 / 0.15), 0 2px 4px -2px rgb(0 0 0 / 0.25);
+  --shadow-sm: 0 2px 3px -0.5px rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  /* Width Constraints */
+  --max-w-text: 80ch;
+  --max-w-form: 40rem;
+
+  /* Form Fields */
+  --ui-field-padding: 0.8rem;
+  --ui-field-height: 2.5rem;
+  --ui-field-font-size: 0.9rem;
+  --ui-field-border: 1px solid var(--light);
+  --ui-field-border-radius: var(--rounded-sm);
+  --ui-field-focus-outline: 2px solid;
+  --ui-field-focus-color: var(--brand-1);
+  --ui-field-bg: var(--white);
+  --ui-field-bg-disabled: var(--lighter);
+  --ui-field-placeholder-color: var(--midtone);
+  --ui-field-value-color: var(--dark);
+  --ui-field-label-color: var(--midtone);
+  --ui-field-value-color-disabled: var(--light);
+  --ui-field-icon-width: 1rem;
+
+  /* Fluid Text and Space (use [NPX command] to update these values) */
+  --text-sm: clamp(0.7rem, 0.6761rem + 0.1195vw, 0.7956rem);
+  --text-base: clamp(0.875rem, 0.8125rem + 0.3125vw, 1.125rem);
+  --text-lg: clamp(1.094rem, 0.9695rem + 0.6212vw, 1.591rem);
+  --text-xl: clamp(1.367rem, 1.147rem + 1.103vw, 2.249rem);
+  --text-2xl: clamp(1.709rem, 1.341rem + 1.839vw, 3.181rem);
+  --text-3xl: clamp(2.136rem, 1.546rem + 2.951vw, 4.497rem);
+  --text-4xl: clamp(2.67rem, 1.748rem + 4.611vw, 6.359rem);
+
+  --space-3xs: clamp(0.2222rem, 0.2171rem + 0.02579vw, 0.2429rem);
+  --space-2xs: clamp(0.3333rem, 0.3155rem + 0.08938vw, 0.4048rem);
+  --space-xs: clamp(0.5rem, 0.4563rem + 0.2186vw, 0.6749rem);
+  --space-sm: clamp(0.75rem, 0.6562rem + 0.4688vw, 1.125rem);
+  --space-md: clamp(1.125rem, 0.9374rem + 0.938vw, 1.875rem);
+  --space-lg: clamp(1.688rem, 1.328rem + 1.798vw, 3.126rem);
+  --space-xl: clamp(2.531rem, 1.861rem + 3.35vw, 5.211rem);
+  --space-2xl: clamp(3.797rem, 2.574rem + 6.113vw, 8.688rem);
+  --space-3xl: clamp(5.695rem, 3.499rem + 10.98vw, 14.48rem);
+  --space-4xl: clamp(8.543rem, 4.643rem + 19.5vw, 24.14rem);
+}
