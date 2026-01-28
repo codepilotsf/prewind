@@ -20,69 +20,42 @@ This approach keeps your HTML readable. You won't end up with 30 classes on a si
 
 Prewind works with the platform, not around it. CSS already has a cascade, variables, and specificity rules that work well — we don't need to reinvent them.
 
-## Installation
+## Getting Started
 
-### 1. Load Prewind
-
-Load Prewind from a CDN or host it yourself:
-
-```html
-<link rel="stylesheet" href="https://unpkg.com/prewindcss@1.2.3" />
-```
-
-### 2. The included reset
-
-Prewind includes a minimal CSS reset in the `reset` layer. It sets `box-sizing: border-box` on all elements, removes default margins and padding, makes images block-level and responsive, inherits fonts on form elements, and removes default button and link styling. You can see the full reset at the top of [prewind.css](https://github.com/codepilotsf/prewind/blob/main/prewind.css).
-
-### 3. Define your theme variables
-
-Prewind's utility classes reference CSS variables for colors, spacing, fonts, and other design tokens. You need to define these variables somewhere in your CSS — either in a separate file, or at the top of your global stylesheet.
-
-You can get the default theme by running `npx prewindcss theme` (copies to clipboard), or copy it from the [repository](https://github.com/codepilotsf/prewind/blob/main/theme.css) and customize it.
-
-```css
-:root {
-  --brand-1: #0284c7;
-  --font-body: "Inter", system-ui, sans-serif;
-  --space-md: 1.5rem;
-  /* ... see Theming section for full list */
-}
-```
-
-However you organize it, just make sure these variables are defined somewhere in your CSS.
-
-### 4. Set up CSS layers
-
-Prewind uses CSS layers to manage the cascade. Utility classes should win over your component styles, so you want to define your layers with `prewind` last.
-
-Your main CSS file should declare the layer order first, then import your theme and Prewind, then define your styles:
+Create a `styles.css` file that sets up CSS layers, imports your theme and Prewind, and contains your global styles:
 
 ```css
 @layer reset, styles, prewind;
 
-@import url("https://unpkg.com/prewindcss");
 @import url("theme.css");
+@import url("https://unpkg.com/prewindcss");
 
 @layer styles {
-  .nav-link {
-    color: var(--brand-1);
-    font-weight: var(--font-bold);
+  body {
+    font-family: var(--font-body);
+    color: var(--black);
+    background: var(--white);
   }
 
-  .card {
-    background: var(--white);
-    border-radius: var(--rounded-lg);
-  }
+  /* Your global styles go here */
 }
 ```
 
-Then your HTML only needs a single stylesheet link:
+Then link to it in your HTML:
 
 ```html
-<link rel="stylesheet" href="css/styles.css" />
+<link rel="stylesheet" href="styles.css" />
 ```
 
-You can rename the `styles` layer or add more layers between `reset` and `prewind` — just make sure all of your layers are in the middle, between `reset` and `prewind`.
+That's it. The layer order ensures Prewind utility classes override your global styles when you need them to.
+
+### The theme file
+
+The `theme.css` import contains CSS variables for colors, spacing, fonts, and other design tokens. Run `npx prewindcss theme` to copy the default theme to your clipboard, then save it as `theme.css` and customize as needed. See the [Theming](#theming) section for details on all available variables.
+
+### The included reset
+
+Prewind includes a minimal CSS reset in the `reset` layer. It sets `box-sizing: border-box` on all elements, removes default margins and padding, makes images block-level and responsive, inherits fonts on form elements, and removes default button and link styling. You can see the full reset at the top of [prewind.css](https://github.com/codepilotsf/prewind/blob/main/prewind.css).
 
 ## Theming
 
