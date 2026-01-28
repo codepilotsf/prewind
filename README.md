@@ -2,6 +2,8 @@
 
 A lightweight CSS utility library with no build step. Prewind provides the most useful utilities for everyday styling while encouraging a simpler, more maintainable approach to CSS. The entire library is ~7KB gzipped. No build step, no purging, no tree-shaking — just one CSS file.
 
+If you know Tailwind, you already know Prewind. The utilities you reach for every day — flex, padding, margin, text color, background, borders, rounded corners, shadows — they're all here with the same class names. The only difference: use t-shirt sizes (`p-md`, `gap-lg`) instead of arbitrary numbers. Skip the animations and complex state variants, and you'll find that most of what you actually type in Tailwind works exactly the same way.
+
 Created by [Codepilot](https://codepilot.com). Inspired by [Tailwind CSS](https://tailwindcss.com) and [Utopia](https://utopia.fyi).
 
 ## Philosophy: Global First
@@ -32,7 +34,7 @@ Load Prewind from a CDN or host it yourself:
 
 Prewind's utility classes reference CSS variables for colors, spacing, fonts, and other design tokens. You need to define these variables somewhere in your CSS — either in a separate file, or at the top of your global stylesheet.
 
-You can copy the [default theme](https://github.com/codepilotsf/prewind/blob/main/theme.css) from the repository and customize it, or define the variables yourself:
+You can get the default theme by running `npx prewindcss theme` (copies to clipboard), or copy it from the [repository](https://github.com/codepilotsf/prewind/blob/main/theme.css) and customize it. Alternatively, define the variables yourself:
 
 ```css
 :root {
@@ -114,10 +116,9 @@ To generate custom fluid sizes for your project:
 ```bash
 npx prewindcss text   # Generate fluid typography scale
 npx prewindcss space  # Generate fluid spacing scale
-npx prewindcss theme  # Get default theme CSS variables
 ```
 
-The `text` and `space` commands launch an interactive configurator where you can adjust:
+Each command launches an interactive configurator where you can adjust:
 
 - Viewport range (min/max)
 - Base size at each viewport
