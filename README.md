@@ -27,7 +27,7 @@ Prewind works with the platform, not around it. CSS already has a cascade, varia
 Load Prewind from a CDN or host it yourself:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/prewindcss@1.2.2" />
+<link rel="stylesheet" href="https://unpkg.com/prewindcss@1.2.3" />
 ```
 
 ### 2. The included reset
