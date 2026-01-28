@@ -114,9 +114,10 @@ To generate custom fluid sizes for your project:
 ```bash
 npx prewindcss text   # Generate fluid typography scale
 npx prewindcss space  # Generate fluid spacing scale
+npx prewindcss theme  # Get default theme CSS variables
 ```
 
-Each command launches an interactive configurator where you can adjust:
+The `text` and `space` commands launch an interactive configurator where you can adjust:
 
 - Viewport range (min/max)
 - Base size at each viewport
