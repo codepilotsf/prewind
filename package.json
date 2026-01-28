@@ -1,6 +1,6 @@
 {
   "name": "prewindcss",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Lightweight, no-build Tailwind alternative",
   "type": "module",
   "main": "prewind.css",
