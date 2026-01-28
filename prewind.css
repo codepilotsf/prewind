@@ -72,8 +72,8 @@
   /* Container */
   .container {
     margin-inline: auto;
-    padding-inline: var(--space-lg);
-    width: clamp(360px, 100%, 1600px);
+    padding: var(--container-padding);
+    width: clamp(360px, 100%, var(--container-max));
   }
 
   /* Accessibility */

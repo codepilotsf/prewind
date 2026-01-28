@@ -28,7 +28,7 @@ Create a `styles.css` file that sets up CSS layers, imports your theme and Prewi
 @layer reset, styles, prewind;
 
 @import url("theme.css");
-@import url("https://unpkg.com/prewindcss");
+@import url("https://unpkg.com/prewindcss@1.2.4");
 
 @layer styles {
   body {
@@ -146,18 +146,30 @@ Prewind intentionally excludes some things to stay lightweight and encourage bet
 
 The goal is useful utilities for most of what you need, most of the time — not coverage of every edge case.
 
+### Prewind-Only Classes
+
+These utility classes are unique to Prewind or behave differently than their Tailwind counterparts:
+
+- **`container`** — Uses CSS `clamp()` for fluid responsive width, unlike Tailwind's breakpoint-based container.
+- **`max-w-text`** — Constrains width for optimal reading measure.
+- **`max-w-form`** — Constrains width for form layouts.
+- **`debug`** — Adds a dashed lime outline and subtle green background to visualize layout boundaries during development.
+- **`revert`** — Resets all CSS properties to browser defaults using `all: revert`.
+- **`bg-opacity-{n}`** — Controls background opacity with values ranging from 0 to 100 in increments of 10.
+- **`font-body`**, **`font-heading`** — Prewind uses semantic font family names instead of Tailwind's `font-sans`, `font-serif`, `font-mono`.
+
 ---
 
 ## Reference
 
 ### General
 
-| Class             | Property                                                                                  |
-| ----------------- | ----------------------------------------------------------------------------------------- |
-| `container`       | `margin-inline: auto; padding-inline: var(--space-lg); width: clamp(360px, 100%, 1600px)` |
-| `revert`          | `all: revert`                                                                             |
-| `debug`           | `outline: 2px dashed lime; outline-offset: -2px; background: rgba(0, 255, 0, 0.05)`       |
-| `appearance-none` | `appearance: none`                                                                        |
+| Class             | Property                                                                                                  |
+| ----------------- | --------------------------------------------------------------------------------------------------------- |
+| `container`       | `margin-inline: auto; padding: var(--container-padding); width: clamp(360px, 100%, var(--container-max))` |
+| `revert`          | `all: revert`                                                                                             |
+| `debug`           | `outline: 2px dashed lime; outline-offset: -2px; background: rgba(0, 255, 0, 0.05)`                       |
+| `appearance-none` | `appearance: none`                                                                                        |
 
 ### Accessibility
 
