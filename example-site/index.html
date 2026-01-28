@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prewind Example</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="site-container">
+      <header>
+        <h1>Prewind Example</h1>
+        <p>A simple example site using Prewind CSS.</p>
+      </header>
+
+      <main>
+        <section class="section bg-lighter">
+          <h2 class="section-title">Cards</h2>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Card One</h3>
+              <p>This is a simple card component styled with global CSS.</p>
+            </div>
+            <div class="card">
+              <h3>Card Two</h3>
+              <p>
+                Most styling lives in your stylesheet, not in class attributes.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Card Three</h3>
+              <p>Use utility classes only for one-offs and tweaks.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section bg-brand-1-light">
+          <h2 class="section-title">Buttons</h2>
+          <div class="button-group">
+            <button class="button bg-brand-1 hover:bg-brand-2">Primary</button>
+            <button
+              class="button bg-white text-brand-1 border border-brand-1 hover:bg-brand-1-light"
+            >
+              Secondary
+            </button>
+            <button class="button bg-success">Success</button>
+            <button class="button bg-error">Error</button>
+          </div>
+        </section>
+
+        <section class="section border">
+          <h2 class="section-title">Typography</h2>
+          <div class="type-scale">
+            <p class="text-4xl">Text 4XL</p>
+            <p class="text-3xl">Text 3XL</p>
+            <p class="text-2xl">Text 2XL</p>
+            <p class="text-xl">Text XL</p>
+            <p class="text-lg">Text LG</p>
+            <p class="text-base">Text Base</p>
+            <p class="text-sm">Text SM</p>
+          </div>
+        </section>
+
+        <section class="section bg-darker text-white">
+          <h2 class="section-title">Colors</h2>
+          <div class="swatch-group">
+            <span class="swatch bg-brand-1">Brand 1</span>
+            <span class="swatch bg-brand-2">Brand 2</span>
+            <span class="swatch bg-brand-3">Brand 3</span>
+            <span class="swatch bg-brand-4">Brand 4</span>
+            <span class="swatch bg-success">Success</span>
+            <span class="swatch bg-warning">Warning</span>
+            <span class="swatch bg-error">Error</span>
+            <span class="swatch bg-info">Info</span>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <p>
+          Built with
+          <a href="https://github.com/codepilotsf/prewind">Prewind CSS</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
