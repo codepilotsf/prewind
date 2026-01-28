@@ -27,14 +27,18 @@ Prewind works with the platform, not around it. CSS already has a cascade, varia
 Load Prewind from a CDN or host it yourself:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/prewindcss@1.2.1" />
+<link rel="stylesheet" href="https://unpkg.com/prewindcss@1.2.2" />
 ```
 
-### 2. Define your theme variables
+### 2. The included reset
+
+Prewind includes a minimal CSS reset in the `reset` layer. It sets `box-sizing: border-box` on all elements, removes default margins and padding, makes images block-level and responsive, inherits fonts on form elements, and removes default button and link styling. You can see the full reset at the top of [prewind.css](https://github.com/codepilotsf/prewind/blob/main/prewind.css).
+
+### 3. Define your theme variables
 
 Prewind's utility classes reference CSS variables for colors, spacing, fonts, and other design tokens. You need to define these variables somewhere in your CSS — either in a separate file, or at the top of your global stylesheet.
 
-You can get the default theme by running `npx prewindcss theme` (copies to clipboard), or copy it from the [repository](https://github.com/codepilotsf/prewind/blob/main/theme.css) and customize it. Alternatively, define the variables yourself:
+You can get the default theme by running `npx prewindcss theme` (copies to clipboard), or copy it from the [repository](https://github.com/codepilotsf/prewind/blob/main/theme.css) and customize it.
 
 ```css
 :root {
@@ -47,18 +51,17 @@ You can get the default theme by running `npx prewindcss theme` (copies to clipb
 
 However you organize it, just make sure these variables are defined somewhere in your CSS.
 
-### 3. Set up CSS layers
+### 4. Set up CSS layers
 
-Prewind uses CSS layers to manage the cascade. Utility classes should win over your component styles, so you want to define your layers with `prewind` last:
+Prewind uses CSS layers to manage the cascade. Utility classes should win over your component styles, so you want to define your layers with `prewind` last.
 
-```css
-@layer reset, styles, prewind;
-```
-
-Put this at the top of your main CSS file. Then wrap all of your own styles in the `styles` layer:
+Your main CSS file should declare the layer order first, then import your theme and Prewind, then define your styles:
 
 ```css
 @layer reset, styles, prewind;
+
+@import url("https://unpkg.com/prewindcss");
+@import url("theme.css");
 
 @layer styles {
   .nav-link {
@@ -71,6 +74,12 @@ Put this at the top of your main CSS file. Then wrap all of your own styles in t
     border-radius: var(--rounded-lg);
   }
 }
+```
+
+Then your HTML only needs a single stylesheet link:
+
+```html
+<link rel="stylesheet" href="css/styles.css" />
 ```
 
 You can rename the `styles` layer or add more layers between `reset` and `prewind` — just make sure all of your layers are in the middle, between `reset` and `prewind`.
