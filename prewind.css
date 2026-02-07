@@ -1783,6 +1783,14 @@
     text-align: justify;
   }
 
+  /* Font Style */
+  .italic {
+    font-style: italic;
+  }
+  .not-italic {
+    font-style: normal;
+  }
+
   /* Text Decoration */
   .underline {
     text-decoration-line: underline;
@@ -1862,11 +1870,20 @@
   }
 
   /* Font Weight */
+  .font-thin {
+    font-weight: var(--font-thin);
+  }
   .font-normal {
     font-weight: var(--font-normal);
   }
+  .font-semibold {
+    font-weight: var(--font-semibold);
+  }
   .font-bold {
     font-weight: var(--font-bold);
+  }
+  .font-heavy {
+    font-weight: var(--font-heavy);
   }
 
   /* User Select */

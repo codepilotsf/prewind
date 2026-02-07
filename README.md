@@ -547,6 +547,13 @@ Same colors as backgrounds.
 | `text-right`   | `text-align: right`   |
 | `text-justify` | `text-align: justify` |
 
+**Style:**
+
+| Class        | Property             |
+| ------------ | -------------------- |
+| `italic`     | `font-style: italic` |
+| `not-italic` | `font-style: normal` |
+
 **Decoration:**
 
 | Class          | Property                             |
@@ -557,10 +564,13 @@ Same colors as backgrounds.
 
 **Weight:**
 
-| Class         | Property                          |
-| ------------- | --------------------------------- |
-| `font-normal` | `font-weight: var(--font-normal)` |
-| `font-bold`   | `font-weight: var(--font-bold)`   |
+| Class           | Property                            |
+| --------------- | ----------------------------------- |
+| `font-thin`     | `font-weight: var(--font-thin)`     |
+| `font-normal`   | `font-weight: var(--font-normal)`   |
+| `font-semibold` | `font-weight: var(--font-semibold)` |
+| `font-bold`     | `font-weight: var(--font-bold)`     |
+| `font-heavy`    | `font-weight: var(--font-heavy)`    |
 
 **Family:**
 
