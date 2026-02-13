@@ -356,6 +356,20 @@
     background: rgb(from var(--highlight) r g b / var(--bg-opacity, 1));
   }
 
+  /* Background Repeat */
+  .bg-repeat {
+    background-repeat: repeat;
+  }
+  .bg-repeat-x {
+    background-repeat: repeat-x;
+  }
+  .bg-repeat-y {
+    background-repeat: repeat-y;
+  }
+  .bg-no-repeat {
+    background-repeat: no-repeat;
+  }
+
   /* Colors - Text */
   .text-brand-1 {
     color: var(--brand-1);

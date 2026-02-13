@@ -28,7 +28,7 @@ Create a `styles.css` file that sets up CSS layers, imports your theme and Prewi
 @layer reset, styles, prewind;
 
 @import url("theme.css");
-@import url("https://unpkg.com/prewindcss@1.2.6");
+@import url("https://unpkg.com/prewindcss@1.2.7");
 
 @layer styles {
   body {
@@ -211,6 +211,15 @@ Background color classes use the `--bg-opacity` variable, allowing you to contro
 Available colors: `brand-1`, `brand-1-light`, `brand-2`, `brand-2-light`, `brand-3`, `brand-3-light`, `brand-4`, `brand-4-light`, `black`, `darker`, `dark`, `midtone`, `light`, `lighter`, `white`, `success`, `success-light`, `info`, `info-light`, `warning`, `warning-light`, `error`, `error-light`, `link`, `highlight`
 
 Opacity values: `0`, `10`, `20`, `30`, `40`, `50`, `60`, `70`, `80`, `90`, `100`
+
+**Repeat:**
+
+| Class          | Property                       |
+| -------------- | ------------------------------ |
+| `bg-repeat`    | `background-repeat: repeat`    |
+| `bg-repeat-x`  | `background-repeat: repeat-x`  |
+| `bg-repeat-y`  | `background-repeat: repeat-y`  |
+| `bg-no-repeat` | `background-repeat: no-repeat` |
 
 ### Borders
 
