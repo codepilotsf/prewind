@@ -210,11 +210,17 @@
   }
 
   /* Border Style */
+  .border-solid {
+    border-style: solid;
+  }
   .border-dashed {
     border-style: dashed;
   }
   .border-dotted {
     border-style: dotted;
+  }
+  .border-none {
+    border: none;
   }
 
   /* Border Width */
@@ -368,6 +374,63 @@
   }
   .bg-no-repeat {
     background-repeat: no-repeat;
+  }
+
+  /* Background Size */
+  .bg-cover {
+    background-size: cover;
+  }
+  .bg-contain {
+    background-size: contain;
+  }
+  .bg-auto {
+    background-size: auto;
+  }
+
+  /* Background Position */
+  .bg-center {
+    background-position: center;
+  }
+  .bg-top {
+    background-position: top;
+  }
+  .bg-bottom {
+    background-position: bottom;
+  }
+  .bg-left {
+    background-position: left;
+  }
+  .bg-right {
+    background-position: right;
+  }
+  .bg-left-top {
+    background-position: left top;
+  }
+  .bg-left-bottom {
+    background-position: left bottom;
+  }
+  .bg-right-top {
+    background-position: right top;
+  }
+  .bg-right-bottom {
+    background-position: right bottom;
+  }
+
+  /* Background Attachment */
+  .bg-fixed {
+    background-attachment: fixed;
+  }
+  .bg-local {
+    background-attachment: local;
+  }
+  .bg-scroll {
+    background-attachment: scroll;
+  }
+
+  /* Background Clip */
+  .bg-clip-text {
+    -webkit-background-clip: text;
+    background-clip: text;
   }
 
   /* Colors - Text */
@@ -1314,6 +1377,9 @@
   }
 
   /* Outline Style */
+  .outline-solid {
+    outline-style: solid;
+  }
   .outline-dashed {
     outline-style: dashed;
   }
@@ -1873,6 +1939,9 @@
   }
   .capitalize {
     text-transform: capitalize;
+  }
+  .normal-case {
+    text-transform: none;
   }
 
   /* Font Family */

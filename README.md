@@ -28,7 +28,7 @@ Create a `styles.css` file that sets up CSS layers, imports your theme and Prewi
 @layer reset, styles, prewind;
 
 @import url("theme.css");
-@import url("https://unpkg.com/prewindcss@1.2.7");
+@import url("https://unpkg.com/prewindcss@1.2.9");
 
 @layer styles {
   body {
@@ -221,6 +221,42 @@ Opacity values: `0`, `10`, `20`, `30`, `40`, `50`, `60`, `70`, `80`, `90`, `100`
 | `bg-repeat-y`  | `background-repeat: repeat-y`  |
 | `bg-no-repeat` | `background-repeat: no-repeat` |
 
+**Size:**
+
+| Class        | Property                   |
+| ------------ | -------------------------- |
+| `bg-cover`   | `background-size: cover`   |
+| `bg-contain` | `background-size: contain` |
+| `bg-auto`    | `background-size: auto`    |
+
+**Position:**
+
+| Class             | Property                            |
+| ----------------- | ----------------------------------- |
+| `bg-center`       | `background-position: center`       |
+| `bg-top`          | `background-position: top`          |
+| `bg-bottom`       | `background-position: bottom`       |
+| `bg-left`         | `background-position: left`         |
+| `bg-right`        | `background-position: right`        |
+| `bg-left-top`     | `background-position: left top`     |
+| `bg-left-bottom`  | `background-position: left bottom`  |
+| `bg-right-top`    | `background-position: right top`    |
+| `bg-right-bottom` | `background-position: right bottom` |
+
+**Attachment:**
+
+| Class       | Property                        |
+| ----------- | ------------------------------- |
+| `bg-fixed`  | `background-attachment: fixed`  |
+| `bg-local`  | `background-attachment: local`  |
+| `bg-scroll` | `background-attachment: scroll` |
+
+**Clip:**
+
+| Class          | Property                |
+| -------------- | ----------------------- |
+| `bg-clip-text` | `background-clip: text` |
+
 ### Borders
 
 **Width:**
@@ -249,8 +285,10 @@ Opacity values: `0`, `10`, `20`, `30`, `40`, `50`, `60`, `70`, `80`, `90`, `100`
 
 | Class           | Property               |
 | --------------- | ---------------------- |
+| `border-solid`  | `border-style: solid`  |
 | `border-dashed` | `border-style: dashed` |
 | `border-dotted` | `border-style: dotted` |
+| `border-none`   | `border: none`         |
 
 **Color:**
 
@@ -404,6 +442,7 @@ Prewind uses outlines instead of "ring" utilities. Modern CSS supports rounded o
 
 | Class            | Property                |
 | ---------------- | ----------------------- |
+| `outline-solid`  | `outline-style: solid`  |
 | `outline-dashed` | `outline-style: dashed` |
 | `outline-dotted` | `outline-style: dotted` |
 
@@ -607,11 +646,12 @@ Same colors as backgrounds.
 
 **Transform:**
 
-| Class        | Property                     |
-| ------------ | ---------------------------- |
-| `uppercase`  | `text-transform: uppercase`  |
-| `lowercase`  | `text-transform: lowercase`  |
-| `capitalize` | `text-transform: capitalize` |
+| Class         | Property                     |
+| ------------- | ---------------------------- |
+| `uppercase`   | `text-transform: uppercase`  |
+| `lowercase`   | `text-transform: lowercase`  |
+| `capitalize`  | `text-transform: capitalize` |
+| `normal-case` | `text-transform: none`       |
 
 ### User Select
 
