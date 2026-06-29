@@ -28,7 +28,7 @@ Create a `styles.css` file that sets up CSS layers, imports your theme and Prewi
 @layer reset, styles, prewind;
 
 @import url("theme.css");
-@import url("https://unpkg.com/prewindcss@1.2.11");
+@import url("https://unpkg.com/prewindcss@1.3");
 
 @layer styles {
   body {
@@ -142,7 +142,7 @@ Prewind intentionally excludes some things to stay lightweight and encourage bet
 
 **No ring utilities.** Modern CSS supports `outline-radius`, so prewind uses outline utilities instead of the box-shadow workaround used for Tailwind `ring` utilities.
 
-**Limited variants.** Hover variants exist for colors, background opacity, and cursor. Responsive variants exist for display, flexbox, and text alignment. That covers most real-world needs without exploding the file size.
+**Limited variants.** Hover variants exist for colors, opacity, background opacity, and cursor. Responsive variants exist for display, flexbox, and text alignment. That covers most real-world needs without exploding the file size.
 
 The goal is useful utilities for most of what you need, most of the time — not coverage of every edge case.
 
@@ -424,6 +424,8 @@ Sizes: `0`, `3xs`, `2xs`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, `fu
 | `opacity-{0-100}` | `opacity: {value}` |
 
 Values: `0`, `10`, `20`, `30`, `40`, `50`, `60`, `70`, `80`, `90`, `100`
+
+The same values are available as hover variants, e.g. `hover:opacity-50`.
 
 ### Outlines
 
@@ -718,12 +720,13 @@ Same colors as backgrounds.
 
 ### Hover
 
-Hover variants are available for colors, background opacity, and cursor:
+Hover variants are available for colors, opacity, background opacity, and cursor:
 
 | Prefix                     | Example                |
 | -------------------------- | ---------------------- |
 | `hover:text-{color}`       | `hover:text-brand-1`   |
 | `hover:bg-{color}`         | `hover:bg-brand-1`     |
+| `hover:opacity-{value}`    | `hover:opacity-50`     |
 | `hover:bg-opacity-{value}` | `hover:bg-opacity-50`  |
 | `hover:cursor-{type}`      | `hover:cursor-pointer` |
 
