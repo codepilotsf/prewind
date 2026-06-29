@@ -28,7 +28,7 @@ Create a `styles.css` file that sets up CSS layers, imports your theme and Prewi
 @layer reset, styles, prewind;
 
 @import url("theme.css");
-@import url("https://unpkg.com/prewindcss@1.3");
+@import url("https://unpkg.com/prewindcss@1.3.0");
 
 @layer styles {
   body {
