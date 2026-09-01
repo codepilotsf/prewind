@@ -12,6 +12,7 @@
   --font-body: "Inter", system-ui, sans-serif;
   --font-heading: "Inter", system-ui, sans-serif;
   --font-thin: 200;
+  --font-color: var(--black);
   --font-normal: 400;
   --font-semibold: 600;
   --font-bold: 700;
